@@ -20,9 +20,7 @@ jobs:
       with:
         java-version: 11
         distribution: 'adopt'
-    - uses: gradle/gradle-build-action@v2
-      with:
-        arguments: build
+    
     - name: Checkout our code
       uses: actions/checkout@v2
       
