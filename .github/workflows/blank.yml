@@ -20,6 +20,8 @@ jobs:
       with:
         java-version: 11
         distribution: 'adopt'
+        # Creating cache for time efficiency
+        cache: gradle
     - name: Checkout our code
       uses: actions/checkout@v2
       
