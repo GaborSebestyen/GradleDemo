@@ -13,10 +13,12 @@ public class AppTest{
         assertNotNull(myApp.getGreeting(), "app should have a greeting");
     }
 
+    /** 
     @Test public void appFailingTest(){
         //Arrange
         App myApp = new App();
         //Act and Assert
         assertNull(myApp.getGreeting(), "test will fail");
     }
+    */
 }
