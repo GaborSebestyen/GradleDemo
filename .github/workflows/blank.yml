@@ -46,14 +46,8 @@ jobs:
     steps:
        
       - name: Add Build Scan URLs to Pull Request
-        run: gradlew test --tests AppTest.appHasAGreeting
+        run: gradle test --tests AppTest.appHasAGreeting
     
-    
-      - name: Save Build Scan Log
-        uses: actions/upload-artifact@v2
-        with:
-          name: buildscan-test
-          path: 'buildscan.log'
           
           
   assemble_job:
