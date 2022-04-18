@@ -37,7 +37,10 @@ jobs:
       run: ./gradlew build
     # Run build with scan in fails
     - if: failure()
-      run: ./gradlew build --scan            
+      run: ./gradlew build --scan  
+    # Run dummy task
+    - name: Dummy task
+      run: ./gradlew -q start
         
   # This workflow contains three jobs and an alternative job
   test_job:
