@@ -11,7 +11,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains three jobs
+  # This workflow contains four jobs
   build:
     name: Build
     # The type of runner that the job will run on
@@ -84,7 +84,8 @@ jobs:
           path: 'buildscan.log'
           # Create warning if file not found
           if-no-files-found: warn
-   
+ 
+  # This workflow contains three jobs
   doc_job:
     name: JavaDocs
     runs-on: ubuntu-latest
