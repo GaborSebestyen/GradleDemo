@@ -38,6 +38,7 @@ jobs:
   # This workflow contains three jobs and an alternative job
   test_job:
     name: Test
+    needs: [build]
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
