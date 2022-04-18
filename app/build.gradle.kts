@@ -13,6 +13,8 @@ Project name: ${project.name}
 plugins{
     //Apply the application plugin for building java applications 
     application
+    // Ability to publish build artifacts to an Apache Maven repository
+    `maven-publish`
 }
 
 // Declaring version number
@@ -46,4 +48,8 @@ application{
 tasks.test{
     //Use TestNG for unit tests
     useTestNG()
+
+    // show standard out and standard error of the test JVM(s) on the console
+    testLogging.showStandardStreams = true
 }
+
