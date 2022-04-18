@@ -37,11 +37,8 @@ jobs:
       run: ./gradlew build
     # Run build with scan in fails
     - if: failure()
-      with:
-        message: Build failed ${{ steps.gradle.outputs.build-scan-url }}
-        run: ./gradlew build --scan
-    
-      
+      run: ./gradlew build --scan            
+        
   # This workflow contains three jobs and an alternative job
   test_job:
     name: Test
@@ -66,8 +63,7 @@ jobs:
       run: ./gradlew test --tests AppTest.appHasAGreeting
     # Open Gradle test report upon fail
     - if: failure()
-      run: ls app/build/reports/tests/test/index.html
-    
+      run: ls app/build/reports/tests/test/index.html    
           
   # This workflow contains two jobs          
   assemble_job:
