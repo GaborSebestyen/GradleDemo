@@ -30,6 +30,19 @@ jobs:
     # Run our build using gradle
     - name: Build with Gradle
       run: ./gradlew build
+      
+ 
+    - id: gradle
+      uses: eskatos/gradle-command-action@v1
+      with:
+        arguments: assembleDebug
+        
+    - name: Add Build Scan URLs to Pull Request
+      uses: mshick/add-pr-comment@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        message: Buildscan url ${{ steps.gradle.outputs.build-scan-url }} 
+        
  
   test_job:
     name: Test
