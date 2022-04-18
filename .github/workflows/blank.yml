@@ -20,7 +20,7 @@ jobs:
       with:
         java-version: 11
         distribution: 'adopt'
-    
+        cache: gradle
     - name: Checkout our code
       uses: actions/checkout@v2
       
@@ -38,14 +38,9 @@ jobs:
   test_job:
     name: Test
     runs-on: ubuntu-latest
-    outputs:
-      buildScanUrl: ${{ steps.gradle.outputs.build-scan-url }}
+   
     steps:
-      - id: gradle
-        uses: eskatos/gradle-command-action@v2
-        with:
-          arguments: assembleDebug
-        
+       
       - name: Add Build Scan URLs to Pull Request
         uses: mshick/add-pr-comment@v1
         with:
