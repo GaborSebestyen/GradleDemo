@@ -59,7 +59,7 @@ jobs:
       run: chmod +x ./gradlew
     # Run test
     - name: Running appHasAGreeting test
-      run: gradlew test --tests AppTest.appHasAGreeting
+      run: ./gradlew test --tests AppTest.appHasAGreeting
     
           
           
