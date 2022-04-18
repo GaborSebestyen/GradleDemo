@@ -46,10 +46,7 @@ jobs:
     steps:
        
       - name: Add Build Scan URLs to Pull Request
-        uses: mshick/add-pr-comment@v1
-        with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          message: Buildscan url ${{ steps.gradle.outputs.build-scan-url }} 
+        run: ./gradlew test --tests AppTest.appHasAGreeting
     
     
       - name: Save Build Scan Log
