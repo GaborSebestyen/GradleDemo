@@ -11,7 +11,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains three jobs
   build:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -25,8 +25,8 @@ jobs:
       with:
         java-version: 11
         distribution: 'adopt'
-        cache: gradle
-      
+        # Using gradle cache to improve efficiencies
+        cache: gradle    
       
     # Make gradlew executable
     - name: Make Gradlew executable
@@ -35,10 +35,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
       
- 
-    
-        
- 
+  # This workflow contains three jobs and an alternative job
   test_job:
     name: Test
     runs-on: ubuntu-latest
@@ -60,6 +57,9 @@ jobs:
     # Run test
     - name: Running appHasAGreeting test
       run: ./gradlew test --tests AppTest.appHasAGreeting
+    # Open Gradle test report upon fail
+    - if: failure()
+      run: ls app/build/reports/tests/test/index.html
     
           
           
