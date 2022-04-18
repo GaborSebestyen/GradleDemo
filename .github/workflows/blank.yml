@@ -35,6 +35,10 @@ jobs:
     # Run our build using gradle
     - name: Build with Gradle
       run: ./gradlew build
+    # Run build with scan in fails
+    - if: failure()
+      run: ./gradlew build --scan
+    
       
   # This workflow contains three jobs and an alternative job
   test_job:
@@ -63,13 +67,14 @@ jobs:
       run: ls app/build/reports/tests/test/index.html
     
           
-  # This workflow contains one job           
+  # This workflow contains two jobs          
   assemble_job:
     name: Assembly
     # Depends on build job
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      # Saving build log
       - name: Save Build Scan Log
         uses: actions/upload-artifact@v2
         with:
@@ -78,3 +83,7 @@ jobs:
           path: 'buildscan.log'
           # Create warning if file not found
           if-no-files-found: warn
+      # Generating JavaDocs
+      - name: Generate JavaDocs
+        run: ./gradlew javadoc
+          
