@@ -39,7 +39,8 @@ jobs:
   # This workflow contains three jobs and an alternative job
   test_job:
     name: Test
-    needs: [build]
+    # Depends on assemble_job
+    needs: [assemble_job]
     runs-on: ubuntu-latest
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -51,8 +52,6 @@ jobs:
         java-version: 11
         distribution: 'adopt'
         cache: gradle
-   
-
     # Make gradlew executable
     - name: Make Gradlew executable
       run: chmod +x ./gradlew
@@ -64,13 +63,18 @@ jobs:
       run: ls app/build/reports/tests/test/index.html
     
           
-          
+  # This workflow contains one job           
   assemble_job:
-    name: Deploy
+    name: Assembly
+    # Depends on build job
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Save Build Scan Log
         uses: actions/upload-artifact@v2
         with:
+          # Store the output of the build in file
           name: buildscan-assemble
           path: 'buildscan.log'
+          # Create warning if file not found
+          if-no-files-found: warn
