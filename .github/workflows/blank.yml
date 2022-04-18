@@ -3,8 +3,12 @@
 name: CI with Java and Gradle
 
 # Controls when the workflow will run
-on: [push]
- 
+on: 
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -20,7 +24,7 @@ jobs:
       with:
         java-version: 11
         distribution: 'adopt'
-        cache: gradle
+        #cache: gradle
     - name: Checkout our code
       uses: actions/checkout@v2
       
