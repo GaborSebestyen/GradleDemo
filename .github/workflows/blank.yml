@@ -30,4 +30,22 @@ jobs:
     # Run our build using gradle
     - name: Build with Gradle
       run: ./gradlew build
-    
+ 
+  test_job:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save Build Scan Log
+        uses: actions/upload-artifact@v2
+        with:
+          name: buildscan-test
+          path: 'buildscan.log'
+  assemble_job:
+    name: Assemble
+    runs-on: ubuntu-latest
+    steps:
+      - name: Save Build Scan Log
+        uses: actions/upload-artifact@v2
+        with:
+          name: buildscan-assemble
+          path: 'buildscan.log'
