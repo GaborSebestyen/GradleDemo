@@ -13,6 +13,7 @@ on:
 jobs:
   # This workflow contains three jobs
   build:
+    name: Build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -65,7 +66,7 @@ jobs:
           
           
   assemble_job:
-    name: Assemble
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Save Build Scan Log
