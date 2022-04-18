@@ -19,13 +19,13 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Setup Java
+    - uses: actions/checkout@v2
     - name: Setup JDK 11
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v2      
       with:
         java-version: 11
         distribution: 'adopt'
-    - name: Checkout our code
-      uses: actions/checkout@v2
+      
       
     # Make gradlew executable
     - name: Make Gradlew executable
