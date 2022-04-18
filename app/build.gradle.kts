@@ -15,9 +15,18 @@ plugins{
     application
 }
 
+// Declaring version number
+version = '1'
+
 repositories{
-    //Use Meven respository to get the libs
+    //Use Maven repository to get the libs
     mavenCentral()
+}
+
+// Declaring what Java version we are building with
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 dependencies{
