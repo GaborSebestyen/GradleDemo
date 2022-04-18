@@ -53,3 +53,11 @@ tasks.test{
     testLogging.showStandardStreams = true
 }
 
+tasks.register("start"){
+    doFirst{
+        println("This could be a proper task to execute first")
+    }
+    doLast{
+        println("This could be a proper task to execute last")
+    }
+}
