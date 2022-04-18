@@ -42,7 +42,7 @@ jobs:
       buildScanUrl: ${{ steps.gradle.outputs.build-scan-url }}
     steps:
       - id: gradle
-        uses: eskatos/gradle-command-action@v1
+        uses: eskatos/gradle-command-action@v2
         with:
           arguments: assembleDebug
         
