@@ -11,8 +11,9 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
+  # This workflow contains three jobs
   build:
+    name: Build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -25,8 +26,8 @@ jobs:
       with:
         java-version: 11
         distribution: 'adopt'
-        cache: gradle
-      
+        # Using gradle cache to improve efficiencies
+        cache: gradle    
       
     # Make gradlew executable
     - name: Make Gradlew executable
@@ -35,27 +36,45 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
       
- 
-    
-        
- 
+  # This workflow contains three jobs and an alternative job
   test_job:
     name: Test
+    # Depends on assemble_job
+    needs: [assemble_job]
     runs-on: ubuntu-latest
-   
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-       
-      - name: Add Build Scan URLs to Pull Request
-        run: gradle test --tests AppTest.appHasAGreeting
+    # Setup Java
+    - uses: actions/checkout@v2
+    - name: Setup JDK 11
+      uses: actions/setup-java@v2      
+      with:
+        java-version: 11
+        distribution: 'adopt'
+        cache: gradle
+    # Make gradlew executable
+    - name: Make Gradlew executable
+      run: chmod +x ./gradlew
+    # Run test
+    - name: Running appHasAGreeting test
+      run: ./gradlew test --tests AppTest.appHasAGreeting
+    # Open Gradle test report upon fail
+    - if: failure()
+      run: ls app/build/reports/tests/test/index.html
     
           
-          
+  # This workflow contains one job           
   assemble_job:
-    name: Assemble
+    name: Assembly
+    # Depends on build job
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Save Build Scan Log
         uses: actions/upload-artifact@v2
         with:
+          # Store the output of the build in file
           name: buildscan-assemble
           path: 'buildscan.log'
+          # Create warning if file not found
+          if-no-files-found: warn
