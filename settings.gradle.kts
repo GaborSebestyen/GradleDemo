@@ -8,6 +8,6 @@
  */
 
 rootProject.name = "GradleDemo"
-println("In the settoings.gradle.kts file - This is executed during the initialisation phase.")
-println("In the settoings.gradle.kts file - Determine which projects take part in the build.")
+println("In the settings.gradle.kts file - This is executed during the initialisation phase.")
+println("In the settings.gradle.kts file - Determine which projects take part in the build.")
 include("app")
